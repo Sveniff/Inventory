@@ -1,4 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E266" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
+        <attribute name="canBeUsedUp" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="condition" attributeType="Double" minValueString="0" maxValueString="1" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="itemDescription" attributeType="String" defaultValueString="Description"/>
+        <attribute name="lastCheckUp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String" defaultValueString="name"/>
+        <attribute name="nextCheckUp" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="supply" attributeType="Integer 64" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="supplyAlert" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="storage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Storage" inverseName="contents" inverseEntity="Storage"/>
+        <relationship name="type" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Type" inverseName="items" inverseEntity="Type"/>
+    </entity>
+    <entity name="Storage" representedClassName="Storage" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="contents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="storage" inverseEntity="Item"/>
+    </entity>
+    <entity name="Type" representedClassName="Type" syncable="YES" codeGenerationType="class">
+        <attribute name="colorB" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="colorG" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="colorR" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="type" inverseEntity="Item"/>
+    </entity>
+    <elements>
+        <element name="Item" positionX="263.96875" positionY="345.06640625" width="128" height="208"/>
+        <element name="Storage" positionX="-27" positionY="369" width="128" height="88"/>
+        <element name="Type" positionX="-180.66796875" positionY="423.6171875" width="128" height="133"/>
+    </elements>
 </model>
